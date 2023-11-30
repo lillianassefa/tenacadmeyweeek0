@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import glob
 import json
@@ -8,8 +9,7 @@ from collections import Counter
 
 import pandas as pd
 from matplotlib import pyplot as plt
-import seaborn as sns
-from nltk.corpus import stopwords
+
 
 
 def break_combined_weeks(combined_weeks):
@@ -181,22 +181,7 @@ def convert_2_timestamp(column, data):
         return timestamp_
     else: print(f"{column} not in data")
 
-def convert_2_timestamp(column, data):
-    """convert from unix time to readable timestamp
-        args: column: columns that needs to be converted to timestamp
-                data: data that has the specified column
-    """
-    if column in data.columns.values:
-        timestamp_ = []
-        for time_unix in data[column]:
-            if time_unix == 0:
-                timestamp_.append(0)
-            else:
-                a = datetime.datetime.fromtimestamp(float(time_unix))
-                timestamp_.append(a.strftime('%Y-%m-%d %H:%M:%S'))
-        return timestamp_
-    else: 
-        print(f"{column} not in data")
+
 
 def get_tagged_users(df):
     """get all @ in the messages"""

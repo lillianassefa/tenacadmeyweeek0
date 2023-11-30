@@ -7,7 +7,6 @@ import copy
 import glob 
 import pandas as pd
 from datetime import datetime
-from pick import pick
 from time import sleep
 
 
@@ -178,10 +177,10 @@ class SlackDataLoader:
         for json_file in glob.glob(f"{path}*.json"):
             with open(json_file, 'r') as slack_data:
                 combined.append(slack_data)
-        # print(f"Total json files is {len(combined)}")
+        print(f"Total json files is {len(combined)}")
         for i in combined:
             a = json.load(open(i.name, 'r', encoding='utf-8'))
-
+            
             for msg in a:
                 if 'replies' in msg.keys():
                     for i in msg['replies']:
@@ -195,5 +194,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Export Slack history')
 
     
-    parser.add_argument('--zip', help="Name of a zip file to import")
+    parser.add_argument("--zip", help="Name of a zip file to import")
     args = parser.parse_args()
