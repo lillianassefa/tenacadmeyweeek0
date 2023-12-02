@@ -176,7 +176,7 @@ def convert_2_timestamp(column, data):
             if time_unix == 0:
                 timestamp_.append(0)
             else:
-                a = datetime.datetime.fromtimestamp(float(time_unix))
+                a = datetime.datetime.fromtimestamp(int(time_unix))
                 timestamp_.append(a.strftime('%Y-%m-%d %H:%M:%S'))
         return timestamp_
     else: print(f"{column} not in data")
